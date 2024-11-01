@@ -1,5 +1,6 @@
 package TipsUY.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,9 +37,11 @@ public class Usuario {
     private LocalDate fechaRegistro;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Comentario> comentarios;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Foto> fotos;
 
     public Usuario(String nombre, String email, String password, String cedula, String tipo, LocalDate fechaRegistro) {

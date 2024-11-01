@@ -1,5 +1,6 @@
 package TipsUY.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,9 +37,11 @@ public class Lugar {
     private String contacto;  // Teléfono o email
 
     @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Foto> fotos;
 
     @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Comentario> comentarios;
 
     private Double ratingPromedio;
