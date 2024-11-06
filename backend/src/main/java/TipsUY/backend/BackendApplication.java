@@ -1,9 +1,6 @@
 package TipsUY.backend;
 
-import TipsUY.backend.entities.Foto;
-import TipsUY.backend.entities.Lugar;
-import TipsUY.backend.entities.Ubicacion;
-import TipsUY.backend.entities.Usuario;
+import TipsUY.backend.entities.*;
 import TipsUY.backend.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +17,9 @@ public class BackendApplication {
 
 	@Autowired
 	private LugarMgr lugarmgr;
+
+	@Autowired
+	private ComentarioMgr comentarioMgr;
 
 	@Autowired
 	private FotoMgr fotoMgr;
@@ -112,6 +112,19 @@ public class BackendApplication {
 			usuarioMgr.addUsuario(turista);
 			Usuario admin = new Usuario("Manu", "manselmi@correo.um.edu.uy", "12345", "69999999", "administrador", LocalDate.now());
 			usuarioMgr.addUsuario(admin);
+
+
+			// Crear comentarios de prueba para cada lugar
+			Comentario comentario1 = new Comentario(turista, plazaVirgilio, "Excelente lugar para relajarse y disfrutar de la vista.", 5);
+			Comentario comentario2 = new Comentario(admin, plazaVirgilio, "Hermoso paisaje y muy tranquilo.", 4);
+			comentarioMgr.addComentario(comentario1);
+			comentarioMgr.addComentario(comentario2);
+
+			Comentario comentario3 = new Comentario(turista, kfe, "El café es delicioso y el ambiente acogedor.", 5);
+			Comentario comentario4 = new Comentario(admin, kfe, "Un excelente lugar para pasar la tarde.", 4);
+			comentarioMgr.addComentario(comentario3);
+			comentarioMgr.addComentario(comentario4);
+
 
 			System.out.println("Lugares y usuarios de prueba creados correctamente.");
 		} catch (Exception e) {
