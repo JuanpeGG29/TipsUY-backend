@@ -6,8 +6,12 @@ import com.ibm.cloud.objectstorage.auth.BasicAWSCredentials;
 import com.ibm.cloud.objectstorage.services.s3.AmazonS3;
 import com.ibm.cloud.objectstorage.services.s3.AmazonS3ClientBuilder;
 import com.ibm.cloud.objectstorage.services.s3.model.ObjectListing;
+import com.ibm.cloud.objectstorage.services.s3.model.ObjectMetadata;
+import com.ibm.cloud.objectstorage.services.s3.model.PutObjectRequest;
 import com.ibm.cloud.objectstorage.services.s3.model.S3ObjectSummary;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,5 +46,15 @@ public class IBMCloudStorageService {
 
         return String.format("https://%s.s3.%s.cloud-object-storage.appdomain.cloud/%s",
                 bucketName, "br-sao", cleanedFileName);
+    }
+
+    public String uploadFile(String bucketName, String fileName, byte[] content) throws IOException {
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(content.length);
+
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, new ByteArrayInputStream(content), metadata);
+        s3Client.putObject(putObjectRequest);
+
+        return getFileUrl(bucketName, fileName);
     }
 }

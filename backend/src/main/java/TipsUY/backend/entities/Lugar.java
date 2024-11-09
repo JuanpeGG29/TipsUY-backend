@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,9 +37,9 @@ public class Lugar {
 
     private String contacto;  // Teléfono o email
 
-    @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Foto> fotos;
+    private List<Foto> fotos = new ArrayList<>(); // Inicializa como una lista vacía
 
     @OneToMany(mappedBy = "lugar", fetch = FetchType.LAZY)
     @JsonManagedReference

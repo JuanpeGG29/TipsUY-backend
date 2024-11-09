@@ -18,10 +18,6 @@ public class UbicacionMgr {
             throw new InformacionInvalida("Alguno de los datos ingresados no es correcto");
         }
 
-        if (ubicacionRepository.findOneByDireccion(ubicacion.getDireccion()) != null) {
-            throw new EntidadYaExiste();
-        }
-
         ubicacionRepository.save(ubicacion);
     }
 }

@@ -83,7 +83,7 @@ public class BackendApplication {
 			lugarmgr.addLugar(plazaVirgilio);
 
 			// Crear ubicación para Plaza Virgilio
-			Ubicacion ubicacionPlaza = new Ubicacion(plazaVirgilio, -34.901112, -56.164532, "Montevideo, Uruguay");
+			Ubicacion ubicacionPlaza = new Ubicacion(plazaVirgilio, -34.901112, -56.164532, "Artigas, Uruguay");
 			ubicacionMgr.addUbicacion(ubicacionPlaza);
 
 			// Crear foto para Plaza Virgilio
