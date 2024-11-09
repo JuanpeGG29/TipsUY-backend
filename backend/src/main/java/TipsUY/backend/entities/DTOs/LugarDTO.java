@@ -7,21 +7,51 @@ public class LugarDTO {
     private String nombre;
     private String descripcion;
     private String tipo;
+    private String contacto;
+    private String precios;
+    private String horarios;
     private Double ratingPromedio;
     private List<String> fotos;
     private String direccion;
     private List<ComentarioDTO> comentarios; // Nueva lista de comentarios
 
-    public LugarDTO(Long id, String nombre, String descripcion, String tipo, Double ratingPromedio,
+    public LugarDTO(Long id, String nombre, String descripcion, String tipo, String horarios, String precios, String contacto, Double ratingPromedio,
                     List<String> fotos, String direccion, List<ComentarioDTO> comentarios) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
+        this.horarios = horarios;
+        this.precios = precios;
+        this.contacto = contacto;
         this.ratingPromedio = ratingPromedio;
         this.fotos = fotos;
         this.direccion = direccion;
         this.comentarios = comentarios;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
+
+    public String getPrecios() {
+        return precios;
+    }
+
+    public void setPrecios(String precios) {
+        this.precios = precios;
+    }
+
+    public String getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(String horarios) {
+        this.horarios = horarios;
     }
 
     public Long getId() {

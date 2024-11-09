@@ -43,6 +43,7 @@ public class LugarController {
     public ResponseEntity<?> agregarLugar(@RequestParam("nombre") String nombre,
                                           @RequestParam("descripcion") String descripcion,
                                           @RequestParam("tipo") String tipo,
+                                          @RequestParam("direccion") String direccion,
                                           @RequestParam("latitude") double latitude,
                                           @RequestParam("longitude") double longitude,
                                           @RequestParam("horarios") String horarios,
@@ -68,7 +69,7 @@ public class LugarController {
             }
 
             // Crear y asociar la ubicación ahora que el lugar está guardado
-            Ubicacion ubicacion = new Ubicacion(lugar, latitude, longitude, null);
+            Ubicacion ubicacion = new Ubicacion(lugar, latitude, longitude, direccion);
             ubicacionMgr.addUbicacion(ubicacion);
 
             System.out.println("LLEGO HASTA EL RETURN");
@@ -90,6 +91,9 @@ public class LugarController {
                 lugar.getNombre(),
                 lugar.getDescripcion(),
                 lugar.getTipo(),
+                lugar.getHorarios(),
+                lugar.getPrecios(),
+                lugar.getContacto(),
                 lugar.getRatingPromedio(),
                 lugar.getFotos().stream()
                         .map(Foto::getUrl) // Utilizar la URL completa de la imagen
@@ -113,6 +117,9 @@ public class LugarController {
                 lugar.getNombre(),
                 lugar.getDescripcion(),
                 lugar.getTipo(),
+                lugar.getHorarios(),
+                lugar.getPrecios(),
+                lugar.getContacto(),
                 lugar.getRatingPromedio(),
                 lugar.getFotos().stream()
                         .map(Foto::getUrl)
