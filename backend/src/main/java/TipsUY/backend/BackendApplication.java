@@ -83,7 +83,7 @@ public class BackendApplication {
 			lugarmgr.addLugar(plazaVirgilio);
 
 			// Crear ubicación para Plaza Virgilio
-			Ubicacion ubicacionPlaza = new Ubicacion(plazaVirgilio, -34.901112, -56.164532, "Artigas, Uruguay");
+			Ubicacion ubicacionPlaza = new Ubicacion(plazaVirgilio, -34.901112, -56.164532, "Montevideo, Rambla de Carrasco");
 			ubicacionMgr.addUbicacion(ubicacionPlaza);
 
 			// Crear foto para Plaza Virgilio
@@ -101,6 +101,8 @@ public class BackendApplication {
 					4.5
 			);
 			lugarmgr.addLugar(kfe);
+			Ubicacion ubicacionKfe = new Ubicacion(kfe, -34.901112, -56.164532, "Artigas, Asuncion 2025");
+			ubicacionMgr.addUbicacion(ubicacionKfe);
 
 			// Crear foto para Kfe
 			Foto fotoKfe = new Foto(null, kfe, "https://bucket-demos.s3.br-sao.cloud-object-storage.appdomain.cloud/Kfe:Kfe.png", LocalDate.now());

@@ -138,6 +138,14 @@ public class LugarController {
 
         return ResponseEntity.ok(lugarDTO);
     }
+
+    @GetMapping("/search")
+    public List<LugarDTO> searchPlaces(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "city", required = false) String city,
+            @RequestParam(value = "type", required = false) String type) {
+        return lugarMgr.searchPlaces(name, city, type);
+    }
 }
 
 
