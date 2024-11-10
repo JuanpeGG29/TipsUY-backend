@@ -3,6 +3,7 @@ package TipsUY.backend.services;
 import TipsUY.backend.entities.Usuario;
 import TipsUY.backend.exceptions.EntidadNoExiste;
 import TipsUY.backend.exceptions.EntidadYaExiste;
+import TipsUY.backend.exceptions.InformacionInvalida;
 import TipsUY.backend.persistence.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,9 +36,18 @@ public class UsuarioMgr {
         return usuarioNuevo;
     }
 
-    public void addUsuario(Usuario usuario) throws EntidadYaExiste {
+    public void addUsuario(Usuario usuario) throws EntidadYaExiste, InformacionInvalida {
         if(usuarioRepository.findByEmail(usuario.getEmail())!=null){
             throw new EntidadYaExiste("Ya existe un Usuario con ese email");
+        }
+
+        if (String.valueOf(usuario.getCedula()).length() != 8) {
+            throw new InformacionInvalida("Cedula incorrecta");
+        }
+
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        if (!usuario.getEmail().matches(emailRegex)){
+            throw new InformacionInvalida("Email incorrecta");
         }
         usuarioRepository.save(usuario);
     }
